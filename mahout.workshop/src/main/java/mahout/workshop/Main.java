@@ -5,14 +5,10 @@ import org.apache.commons.lang.NotImplementedException;
 public class Main {
 	public static void main(String[] args){ 
         System.out.println("System Start"); 
-        Boolean runClassifier = false;
         Boolean runClustering = true;
         Boolean runRecommender = false;
         Boolean runCSVToDATConverter = false;
         
-        if(runClassifier) {
-        	throw new NotImplementedException();
-        }
         
         if(runClustering) {
         	Clustering clustering = new Clustering();

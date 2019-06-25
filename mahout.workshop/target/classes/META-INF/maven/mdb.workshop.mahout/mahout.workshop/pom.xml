@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mdb.workshop.mahout</groupId>
+  <artifactId>mahout.workshop</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Mahout Workshop</name>
+  
+  <properties>
+  	<apache.mahout.version>0.9</apache.mahout.version>
+  </properties>
+  
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+	<dependency>
+    	<groupId>org.apache.mahout</groupId>
+    	<artifactId>mahout-core</artifactId>
+    	<version>${apache.mahout.version}</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-math -->
+	<dependency>
+	    <groupId>org.apache.mahout</groupId>
+	    <artifactId>mahout-math</artifactId>
+	    <version>${apache.mahout.version}</version>
+	</dependency>
+	
+	
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-simple</artifactId>
+		<version>1.7.5</version>
+	</dependency>
+
+  </dependencies>
+  
+</project>

@@ -21,19 +21,32 @@ import org.apache.commons.lang.NotImplementedException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 
 public class Recommender {
-	public Recommender(String pathToInputData) {
-		//create DataModel here
+	
+	DataModel model;
+	UserBasedRecommender recommenderUserBased;
+	
+	public Recommender(String pathToInputData) throws IOException {
+		model = new FileDataModel(new File(pathToInputData));
 	}
 	
-	public void setupRecommender(float thresholdUserNeighborhood) {
-		throw new NotImplementedException();
-	}
-	
-	public List<RecommendedItem> getRecommendationsByUserID(int userID, int recommendationAmount){
-		throw new NotImplementedException();
-	}
-	
-	public void printRecommendationsForUser(int userID, int recommendationAmount) {
+	public void setupRecommender(float thresholdUserNeighborhood) throws TasteException {
+		UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+		UserNeighborhood neighborhood = new ThresholdUserNeighborhood(thresholdUserNeighborhood, similarity, model);
+		recommenderUserBased = new GenericUserBasedRecommender(model, neighborhood, similarity);
 		
+	}
+	
+	public List<RecommendedItem> getRecommendationsByUserID(int userID, int recommendationAmount) throws TasteException{
+		return recommenderUserBased.recommend(userID, recommendationAmount);
+	}
+	
+	public void printRecommendationsForUser(int userID, int recommendationAmount) throws TasteException {
+		List<RecommendedItem> recommendations = getRecommendationsByUserID(userID, recommendationAmount);
+		int i = 1;
+		System.out.println("Recommendations for user with id "+userID+":");
+		for(RecommendedItem recommendation : recommendations) {
+			System.out.println("\t"+i+" Item: " + recommendation.getItemID()+" Rating:"+recommendation.getValue());
+			i++;
+		}
 	}
 }
